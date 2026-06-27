@@ -87,27 +87,33 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Headquarters</h3>
+            <h3 className="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Registered Office</h3>
             <div className="space-y-4 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-corporate-gold mt-1 shrink-0" />
-                <p>123 Corporate Park, Financial District, New Delhi, India 110001</p>
+                <p>No 284, Neha Nagar, Makroniya, Sagar, Madhya Pradesh - 470004, India</p>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={18} className="text-corporate-gold shrink-0" />
-                <p>+91 11 2345 6789</p>
+                <p>+91 8602467804</p>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-corporate-gold shrink-0" />
-                <p>info@shreesvarn.com</p>
+                <div className="space-y-0.5">
+                  <p>info@shreesvarn.com</p>
+                  <p className="text-xs text-slate-400">nikhilkushwaha8022@gmail.com</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} Shreesvarn Finnovotion Pvt Ltd. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
+        <div className="border-t border-slate-800 pt-8 flex flex-col lg:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+          <div className="space-y-1 text-center lg:text-left">
+            <p>&copy; {new Date().getFullYear()} Shreesvarn Finnovotion Pvt Ltd. All rights reserved.</p>
+            <p className="text-[10px] text-slate-600">CIN: U46511MP2023PTC066911 | GSTIN: 23ABLCS3566J1ZZ | Udyam: UDYAM-MP-39-0031057</p>
+          </div>
+          <div className="flex gap-6">
             <a href="#" className="hover:text-slate-300">Privacy Policy</a>
             <a href="#" className="hover:text-slate-300">Terms of Service</a>
             <a href="#" className="hover:text-slate-300">Sitemap</a>

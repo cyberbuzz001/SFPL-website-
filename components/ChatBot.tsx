@@ -102,6 +102,43 @@ export const ChatBot: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
+          {/* Quick Query Suggestions */}
+          <div className="px-4 py-2 bg-slate-100 border-t border-slate-200 flex gap-1.5 overflow-x-auto scrollbar-none shrink-0">
+            {[
+              { label: '📜 e-MoA Objects', text: 'Can you summarize the core statutory objects authorized under SFPLs amended Memorandum of Association (e-MOA)?' },
+              { label: '🏢 CIN & Reg', text: 'What is SFPLs Corporate Identification Number (CIN), GSTIN, MSME Udyam, and active corporate registry?' },
+              { label: '🚧 Projects', text: 'What kind of projects are currently planned or active under your Civil and Infrastructure verticals?' },
+              { label: '🌱 Smart Villages', text: 'How does SFPL design and execute rural development, smart villages, and water management projects?' }
+            ].map((chip, idx) => (
+              <button
+                key={idx}
+                disabled={isLoading}
+                onClick={async () => {
+                  if (isLoading) return;
+                  const userMsg: ChatMessage = { role: 'user', text: chip.text, timestamp: new Date() };
+                  setMessages(prev => [...prev, userMsg]);
+                  setIsLoading(true);
+                  try {
+                    const history = messages.map(m => ({
+                      role: m.role,
+                      parts: [{ text: m.text }]
+                    }));
+                    const responseText = await sendMessageToGemini(history, chip.text);
+                    const botMsg: ChatMessage = { role: 'model', text: responseText, timestamp: new Date() };
+                    setMessages(prev => [...prev, botMsg]);
+                  } catch (err) {
+                    console.error(err);
+                  } finally {
+                    setIsLoading(false);
+                  }
+                }}
+                className="bg-white border border-slate-250 hover:border-corporate-gold hover:bg-amber-50/50 text-slate-700 text-[10px] font-bold py-1 px-2.5 rounded-full transition-colors whitespace-nowrap shrink-0 disabled:opacity-50"
+              >
+                {chip.label}
+              </button>
+            ))}
+          </div>
+
           {/* Input */}
           <div className="p-4 bg-white border-t border-slate-200">
             <div className="flex gap-2">
